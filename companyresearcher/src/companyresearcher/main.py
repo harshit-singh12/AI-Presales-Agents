@@ -18,8 +18,7 @@ def run():
     Run the crew.
     """
     inputs = {
-        'company_name': 'LatentBridge',
-        'current_year': str(datetime.now().year)
+        'company_name': 'LatentBridge'
     }
     
     try:

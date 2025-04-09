@@ -1,7 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
-from tools.custom_tool import LinkedInSearchTool
+from tools.custom_tool import LinkedInJobSearchTool
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -11,7 +11,8 @@ load_dotenv()
 
 search_tool = SerperDevTool()
 scrape_tool = ScrapeWebsiteTool()
-linked_tool = LinkedInSearchTool()
+#linked_tool = LinkedInSearchTool()
+linkedInJobSearch_tool = LinkedInJobSearchTool()
 
 @CrewBase
 class Companyresearcher():
@@ -33,14 +34,22 @@ class Companyresearcher():
             verbose=True
         )
 
-    @agent
+    """@agent
     def linkedin_profile_researcher(self) -> Agent:
         return Agent(
             config=self.agents_config['linkedin_profile_researcher'],
             tools=[linked_tool],
             verbose=True
         )
-    # Can add Analysis agent which will analyse the content received by researcher agent
+    # Can add Analysis agent which will analyse the content received by researcher agent"""
+
+    @agent
+    def linkedin_jobOpening_researcher(self) -> Agent:
+        return Agent(
+            config=self.agents_config['linkedin_jobOpening_researcher'],
+            tools=[linkedInJobSearch_tool],
+            verbose=True
+        )
 
     @agent
     def reporting_analyst(self) -> Agent:
@@ -58,10 +67,16 @@ class Companyresearcher():
             config=self.tasks_config['research_task'],
         )
 
-    @task
+    """@task
     def linkedin_research_task(self) -> Task:
         return Task(
             config=self.tasks_config['linkedin_research_task'],
+        )"""
+
+    @task
+    def linkedin_jobopening_researcher_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['linkedin_jobopening_researcher_task'],
         )
 
     @task

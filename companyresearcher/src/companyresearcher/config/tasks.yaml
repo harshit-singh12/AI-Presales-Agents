@@ -11,21 +11,30 @@ research_task:
     Competitors, Tech Partners, Client Names, top 5 news and press. 
   agent: researcher
 
-linkedin_research_task:
+# linkedin_research_task:
+#   description: >
+#     Conduct a thorough research about company_founders which you received from researcher.
+#     Output the most likely URL based on a score between 1 and 100 of how confident you are.
+#     If there is exactly one profile with company founder name considering the company name, your confidence should be very high.
+#     If there are multiple profiles that match the company founder name and none matches the employer, your confidence should be low.
+#     Provide atleast one most confident profile URL.
+#   expected_output: >
+#     A most suitable Linkedin profile URL of the founders, if there are multiple founder provide
+#     each founder profile comma seprated.  
+#   agent: linkedin_profile_researcher
+
+linkedin_jobopening_researcher_task:
   description: >
-    Conduct a thorough research about company_founders which you received from researcher.
-    Make sure you find the relevant profile from linkedin.
-    Don't make any asumptions in profile consideration and do the thorough research on linked to make the best 
-    suitable profile.
+    Search LinkedIn for open jobs at {company_name} and list job titles with URLs.
   expected_output: >
-    A most suitable Linkedin profile URL of the founders, if there are multiple founder provide
-    each founder profile comma seprated.  
-  agent: linkedin_profile_researcher
+    A formatted list of job openings with clickable links.
+  agent: linkedin_jobOpening_researcher
+
 
 reporting_task:
   description: >
     Review the context you got for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Make sure the report is detailed and contains any and all relevant information retervied by previous agents.
   expected_output: >
     A fully fledged report with the main parameters, each with a full section of information.
     Follow the below structure:
@@ -35,6 +44,7 @@ reporting_task:
     * Year Founded:
     * Headquarters:
     * Number of Employees:
+    * Job openings:
     * Global Presence:
     * Leadership Team:
     * Company Type:
