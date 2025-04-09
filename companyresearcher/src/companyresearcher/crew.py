@@ -5,13 +5,9 @@ from tools.custom_tool import LinkedInJobSearchTool
 from dotenv import load_dotenv
 load_dotenv()
 
-# If you want to run a snippet of code before or after the crew starts,
-# you can use the @before_kickoff and @after_kickoff decorators
-# https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
-
+# Loading tools
 search_tool = SerperDevTool()
 scrape_tool = ScrapeWebsiteTool()
-#linked_tool = LinkedInSearchTool()
 linkedInJobSearch_tool = LinkedInJobSearchTool()
 
 @CrewBase
@@ -33,15 +29,6 @@ class Companyresearcher():
             tools=[search_tool, scrape_tool],
             verbose=True
         )
-
-    """@agent
-    def linkedin_profile_researcher(self) -> Agent:
-        return Agent(
-            config=self.agents_config['linkedin_profile_researcher'],
-            tools=[linked_tool],
-            verbose=True
-        )
-    # Can add Analysis agent which will analyse the content received by researcher agent"""
 
     @agent
     def linkedin_jobOpening_researcher(self) -> Agent:
@@ -66,12 +53,6 @@ class Companyresearcher():
         return Task(
             config=self.tasks_config['research_task'],
         )
-
-    """@task
-    def linkedin_research_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['linkedin_research_task'],
-        )"""
 
     @task
     def linkedin_jobopening_researcher_task(self) -> Task:

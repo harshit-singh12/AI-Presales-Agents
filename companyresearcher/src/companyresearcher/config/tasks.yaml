@@ -11,18 +11,6 @@ research_task:
     Competitors, Tech Partners, Client Names, top 5 news and press. 
   agent: researcher
 
-# linkedin_research_task:
-#   description: >
-#     Conduct a thorough research about company_founders which you received from researcher.
-#     Output the most likely URL based on a score between 1 and 100 of how confident you are.
-#     If there is exactly one profile with company founder name considering the company name, your confidence should be very high.
-#     If there are multiple profiles that match the company founder name and none matches the employer, your confidence should be low.
-#     Provide atleast one most confident profile URL.
-#   expected_output: >
-#     A most suitable Linkedin profile URL of the founders, if there are multiple founder provide
-#     each founder profile comma seprated.  
-#   agent: linkedin_profile_researcher
-
 linkedin_jobopening_researcher_task:
   description: >
     Search LinkedIn for open jobs at {company_name} and list job titles with URLs.
