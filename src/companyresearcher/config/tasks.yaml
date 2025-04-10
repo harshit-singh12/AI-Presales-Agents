@@ -1,21 +1,20 @@
 research_task:
   description: >
     Conduct a thorough research about {company_name}
-    Make sure you find the relevant information about Company website, Company Founders, Year Founded, Headquarters, Number of Employees,
-    Global Presence, Leadership Team, Company Type, Services, Products, 
-    Competitors, Tech Partners, Client Names, top 5 news and press. from all available sources.
+    Make sure you find the relevant information about Company website, Company Founders, Year Founded, 
+    Headquarters, Number of Employees, Global Presence, Leadership Team, Company Type, Services, Products, 
+    Competitors, Tech Partners, Client Names, top 5 news and press.
     Don't make any asumptions and if you don't find anything which is required to complete the research
     then use the links mentioned in the user_preference.txt file under knowledge folder.
   expected_output: >
-    Most relevant information about {company_name} without making any assumptions and must include below parameters; 
-    Company website, Company Founders, Year Founded, Headquarters, Number of Employees,
-    Global Presence, Leadership Team, Company Type, Services, Products, 
-    Competitors, Tech Partners, Client Names, top 5 news and press. 
+    Most relevant information about {company_name} without making any assumptions 
+    and must include all relevant information in proper sections and bullet points. 
   agent: researcher
 
 linkedin_jobopening_researcher_task:
   description: >
-    Search LinkedIn for open jobs at {company_name} and list job titles with URLs.
+    Search LinkedIn for open jobs at {company_name} and make sure to list job titles with URLs 
+    if there are any open jobs.
   expected_output: >
     A formatted list of job openings with clickable links.
   agent: linkedin_jobOpening_researcher

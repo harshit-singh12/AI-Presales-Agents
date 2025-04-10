@@ -1,4 +1,5 @@
-from crewai import Agent, Crew, Process, Task
+import os
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 from tools.custom_tool import LinkedInJobSearchTool
@@ -9,6 +10,15 @@ load_dotenv()
 search_tool = SerperDevTool()
 scrape_tool = ScrapeWebsiteTool()
 linkedInJobSearch_tool = LinkedInJobSearchTool()
+
+# Loading LLM
+
+llm= LLM(
+    model=os.getenv('MODEL'),
+    api_key=os.getenv('AZURE_API_KEY'),
+    base_url=os.getenv('AZURE_API_BASE'),
+    api_version=os.getenv('AZURE_API_VERSION')
+)
 
 @CrewBase
 class Companyresearcher():
@@ -27,6 +37,7 @@ class Companyresearcher():
         return Agent(
             config=self.agents_config['researcher'],
             tools=[search_tool, scrape_tool],
+            llm=llm,
             verbose=True
         )
 
@@ -35,6 +46,7 @@ class Companyresearcher():
         return Agent(
             config=self.agents_config['linkedin_jobOpening_researcher'],
             tools=[linkedInJobSearch_tool],
+            llm = llm,
             verbose=True
         )
 
@@ -42,6 +54,7 @@ class Companyresearcher():
     def reporting_analyst(self) -> Agent:
         return Agent(
             config=self.agents_config['reporting_analyst'],
+            llm= llm,
             verbose=True
         )
 
